@@ -1,7 +1,5 @@
-Tag.create([
-  { name: 'タグ1' },
-  { name: 'タグ2' },
-  { name: 'タグ3' },
-  { name: 'タグ4' },
-  { name: 'タグ5' }
-])
+Tag.find_or_create_by(name: 'タグ1')
+Tag.find_or_create_by(name: 'タグ2')
+Tag.find_or_create_by(name: 'タグ3')
+Tag.find_or_create_by(name: 'タグ4')
+Tag.find_or_create_by(name: 'タグ5')
