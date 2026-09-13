@@ -15,7 +15,7 @@ class TweetsController < ApplicationController
   end
 
   if params[:tag].present?
-    Tag.create(name: params[:tag])
+   Tag.find_or_create_by(name: params[:tag])
   end
 
   if params[:search].present?
