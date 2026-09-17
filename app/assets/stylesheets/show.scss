@@ -1,0 +1,174 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f1f3f6;
+  color: #333;
+  font-family: "Noto Sans JP", Arial, sans-serif;
+}
+
+.post-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* RuleVerse ロゴ */
+
+.site-logo {
+  margin: 0 0 15px 0;
+  color: #003b73;
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* 投稿詳細 */
+
+.post-container > h3 {
+  margin: 0 0 15px 0;
+  padding: 7px 15px;
+  background-color: #003b73;
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+/* 投稿 */
+
+.tweet {
+  padding: 15px 20px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* 投稿タイトル */
+
+.tweet h2 {
+  margin: 0 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #003b73;
+  color: #222;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+/* 投稿内容 */
+
+.tweet p {
+  margin: 8px 0;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.tweet p strong {
+  color: #003b73;
+}
+
+/* 画像 */
+
+.tweet-image {
+  margin: 12px 0;
+  text-align: center;
+}
+
+.tweet-image img {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* タグ */
+
+.tweet-tags {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.tweet-tags strong {
+  margin-right: 8px;
+  color: #003b73;
+}
+
+.tweet-tags span {
+  display: inline-block;
+  margin: 3px;
+  padding: 3px 9px;
+  background-color: #e8eef5;
+  border-radius: 15px;
+  color: #003b73;
+  font-size: 13px;
+}
+
+/* ボタン */
+
+.action-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.action-links a {
+  display: inline-block;
+  padding: 9px 16px;
+  background-color: #003b73;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.action-links a:hover {
+  background-color: #0056a6;
+}
+
+/* スマホ対応 */
+
+@media (max-width: 600px) {
+
+  .post-container {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  .site-logo {
+    font-size: 28px;
+  }
+
+  .post-container > h3 {
+    font-size: 18px;
+  }
+
+  .tweet {
+    padding: 12px 15px;
+  }
+
+  .tweet h2 {
+    font-size: 20px;
+  }
+
+  .tweet p {
+    font-size: 14px;
+    margin: 7px 0;
+  }
+
+  .tweet-image img {
+    max-width: 100%;
+  }
+
+  .action-links {
+    flex-direction: column;
+  }
+
+  .action-links a {
+    text-align: center;
+  }
+
+}

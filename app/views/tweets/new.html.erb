@@ -6,26 +6,37 @@
 
   <%= form_for @tweet do |f| %>
 
+    <!-- タイトル -->
+    <div class="field">
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title, size: 30 %>
+    </div>
+
+    <!-- スポーツ名 -->
     <div class="field">
       <%= f.label :genre, "スポーツ名" %>
       <%= f.text_field :genre, size: 30 %>
     </div>
 
+    <!-- 試合日 -->
     <div class="field">
       <%= f.label :gamedate, "直近の試合日" %>
       <%= f.date_field :gamedate %>
     </div>
 
+    <!-- 詳細 -->
     <div class="field">
       <%= f.label :about, "詳細" %>
       <%= f.text_area :about, size: "30x2" %>
     </div>
 
+    <!-- 画像 -->
     <div class="field">
       <%= f.label :image, "画像" %>
       <%= f.file_field :image %>
     </div>
 
+    <!-- タグ -->
     <div class="form-group">
       <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
         <div class="form-check">
@@ -37,6 +48,7 @@
       <% end %>
     </div>
 
+    <!-- 投稿 -->
     <%= f.submit "投稿する" %>
 
   <% end %>

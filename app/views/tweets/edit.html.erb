@@ -1,5 +1,66 @@
-<%= form_for @tweet do |f| %>
-  <%= f.label :about %>
-  <%= f.text_field :about, :size => 140 %> 
-  <%= f.submit "編集する" %>
-<% end %>
+<%= stylesheet_link_tag 'new', media: 'all' %>
+
+<div class="post-container">
+
+  <p class="title">EDIT SPORTS</p>
+
+  <%= form_for @tweet do |f| %>
+
+    <!-- タイトル -->
+    <div class="field">
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title, size: 30 %>
+    </div>
+
+    <!-- スポーツ名 -->
+    <div class="field">
+      <%= f.label :genre, "スポーツ名" %>
+      <%= f.text_field :genre, size: 30 %>
+    </div>
+
+    <!-- 試合日 -->
+    <div class="field">
+      <%= f.label :gamedate, "直近の試合日" %>
+      <%= f.date_field :gamedate %>
+    </div>
+
+    <!-- 詳細 -->
+    <div class="field">
+      <%= f.label :about, "詳細" %>
+      <%= f.text_area :about, size: "30x4" %>
+    </div>
+
+    <!-- 画像 -->
+    <div class="field">
+      <%= f.label :image, "画像" %>
+      <%= f.file_field :image %>
+    </div>
+
+    <!-- タグ -->
+    <div class="form-group">
+
+      <p>タグ</p>
+
+      <% Tag.all.each do |tag| %>
+
+        <div class="form-check">
+
+          <%= check_box_tag "tweet[tag_ids][]",
+                            tag.id,
+                            @tweet.tag_ids.include?(tag.id) %>
+
+          <%= tag.name %>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+    <%= f.submit "編集する" %>
+
+  <% end %>
+
+  <%= link_to "一覧に戻る", tweets_path %>
+
+</div>

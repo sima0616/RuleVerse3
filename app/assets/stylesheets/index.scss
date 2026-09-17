@@ -1,23 +1,651 @@
-.tweets-container {
-  width: 50%;
-  margin: 10px auto;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+* {
+  box-sizing: border-box;
 }
-h3 {
-  width: 100px;
-  margin: 30px auto;
-  text-align: center;
+
+body {
+  margin: 0;
+  background-color: #f1f3f6;
+  color: #333;
+  font-family: 'Noto Sans JP', sans-serif;
 }
-.tweet {
-  border-top: solid #00acee;
-  margin-top: 10px;
-  padding-top: 20px;
+
+.site-wrapper {
+  width: 100%;
 }
-.main-box {
-  margin: 5px 0;
+
+/* =========================
+   ヘッダー
+========================= */
+
+.site-header {
+  background-color: #003b73;
+  color: white;
+  padding: 20px 0;
+}
+
+.header-inner {
+  width: 94%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-top {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-.time {
+
+.site-header h1 {
+  margin: 0;
+  font-family: 'Arial Black', 'Arial', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  
+}
+
+.site-header p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* =========================
+   アカウントメニュー
+========================= */
+
+.account-menu {
   display: flex;
-  justify-content: flex-end;
+  gap: 12px;
+  align-items: center;
+}
+
+.account-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.account-menu a:hover {
+  text-decoration: underline;
+}
+
+.account-menu input[type="submit"] {
+  margin: 0;
+  padding: 7px 12px;
+  border: 1px solid #d5dce3;
+  border-radius: 3px;
+  background-color: white;
+  color: #333;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.account-menu input[type="submit"]:hover {
+  background-color: #f0f0f0;
+}
+
+/* =========================
+   カテゴリーメニュー
+========================= */
+
+.category-menu {
+  background-color: white;
+  border-bottom: 3px solid #003b73;
+}
+
+.category-menu ul {
+  width: 94%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  list-style: none;
+}
+
+.category-menu li {
+  border-right: 1px solid #e1e5e9;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.category-menu li:first-child {
+  border-left: 1px solid #e1e5e9;
+}
+
+.category-menu a {
+  display: block;
+  padding: 14px 22px;
+  color: #333;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.category-menu a:hover {
+  background-color: #eaf2f9;
+  color: #003b73;
+}
+
+/* =========================
+   検索
+========================= */
+
+.search-box {
+  width: 94%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 16px 18px;
+  background-color: white;
+  border: 1px solid #d8dce1;
+  border-top: 4px solid #003b73;
+}
+
+.search-box h3 {
+  margin: 0 0 9px !important;
+  padding: 0 !important;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.search-box form {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.search-form {
+  display: flex !important;
+  width: 100% !important;
+  height: 34px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.search-form input[type="text"] {
+  display: block;
+  width: 500px !important;
+  height: 34px !important;
+  margin: 0 !important;
+  padding: 5px 10px !important;
+  border: 1px solid #c9ced4 !important;
+  border-radius: 3px 0 0 3px !important;
+  font-size: 13px;
+}
+
+.search-form input[type="submit"] {
+  display: block;
+  width: 95px !important;
+  min-width: 95px !important;
+  max-width: 95px !important;
+  height: 34px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 3px 3px 0 !important;
+  background-color: #003b73 !important;
+  color: white !important;
+  font-size: 12px !important;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.search-form input[type="submit"]:hover {
+  background-color: #00549e !important;
+}
+
+/* =========================
+   全体レイアウト
+========================= */
+
+.content-wrapper {
+  width: 94%;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar {
+  width: 275px;
+  flex-shrink: 0;
+}
+
+/* =========================
+   ページタイトル
+========================= */
+
+.page-title {
+  margin-bottom: 10px;
+  padding: 13px 16px;
+  background-color: #003b73;
+  color: white;
+  border-bottom: 4px solid #002c55;
+}
+
+.page-title h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* =========================
+   投稿一覧
+========================= */
+
+.tweets-container {
+  width: 100%;
+}
+
+/* =========================
+   投稿カード
+========================= */
+
+.tweet {
+  position: relative;
+  margin-bottom: 12px;
+  padding: 16px;
+  background-color: white;
+  border: 1px solid #d8dce1;
+  border-left: 5px solid #003b73;
+  transition: 0.2s;
+}
+
+.tweet:hover {
+  border-left-color: #00549e;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   投稿本体
+========================= */
+
+.tweet-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+/* =========================
+   投稿画像
+========================= */
+
+.tweet-image-box {
+  width: 220px;
+  height: 130px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 3px;
+  background-color: #eee;
+}
+
+.tweet-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.2s;
+}
+
+.tweet:hover .tweet-image {
+  transform: scale(1.02);
+}
+
+/* =========================
+   投稿内容
+========================= */
+
+.tweet-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* =========================
+   ジャンル
+========================= */
+
+.tweet-genre {
+  display: inline-block;
+  margin-bottom: 7px;
+  padding: 3px 9px;
+  background-color: #e6f0f9;
+  color: #003b73;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* =========================
+   タイトル
+========================= */
+
+.tweet-title {
+  margin: 0 0 8px;
+  color: #222;
+  font-size: 19px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.tweet-title:hover {
+  color: #003b73;
+}
+
+/* =========================
+   詳細
+========================= */
+
+.tweet-about {
+  margin: 0 0 10px;
+  color: #555;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================
+   日付・投稿者
+========================= */
+
+.tweet-date,
+.tweet-user {
+  margin: 3px 0;
+  color: #777;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* =========================
+   操作ボタン
+========================= */
+
+.tweet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.tweet-actions a,
+.tweet-actions input[type="submit"] {
+  display: block;
+  min-width: 62px;
+  padding: 7px 9px;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 詳細 */
+
+.detail-button {
+  background-color: #003b73;
+  color: white;
+}
+
+.detail-button:hover {
+  background-color: #00549e;
+}
+
+/* 編集 */
+
+.edit-button {
+  background-color: #eeeeee;
+  color: #333;
+}
+
+.edit-button:hover {
+  background-color: #dddddd;
+}
+
+/* 削除 */
+
+.delete-button {
+  background-color: #eeeeee;
+  color: #c00000;
+}
+
+.delete-button:hover {
+  background-color: #dddddd;
+}
+
+/* =========================
+   投稿日時
+========================= */
+
+.time {
+  margin: 10px 0 0;
+  padding-top: 8px;
+  border-top: 1px solid #eeeeee;
+  text-align: right;
+  color: #999;
+  font-size: 10px;
+}
+
+/* =========================
+   サイドバー
+========================= */
+
+.sidebar-box {
+  margin-bottom: 18px;
+  padding: 16px;
+  background-color: white;
+  border: 1px solid #d8dce1;
+}
+
+.sidebar-box h3 {
+  margin: -16px -16px 14px;
+  padding: 11px 13px;
+  border-left: 5px solid #003b73;
+  border-bottom: 1px solid #eeeeee;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+}
+
+/* =========================
+   タグ一覧
+========================= */
+
+.tag-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eeeeee;
+  font-size: 13px;
+}
+
+.tag-list li:last-child {
+  border-bottom: none;
+}
+
+.tag-list input[type="checkbox"] {
+  margin-right: 6px;
+}
+
+/* =========================
+   タグ検索
+========================= */
+
+.sidebar-box > form > input[type="submit"] {
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px;
+  border: none;
+  border-radius: 3px;
+  background-color: #003b73;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sidebar-box > form > input[type="submit"]:hover {
+  background-color: #00549e;
+}
+
+/* =========================
+   タグ削除
+========================= */
+
+.tag-delete-list {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.tag-delete-list form {
+  margin-bottom: 5px;
+}
+
+.tag-delete-list input[type="submit"] {
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border-radius: 3px;
+  background-color: #f3f3f3;
+  color: #c00000;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.tag-delete-list input[type="submit"]:hover {
+  background-color: #e9e9e9;
+}
+
+/* =========================
+   タグ追加
+========================= */
+
+.sidebar-box input[type="text"] {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+.sidebar-box input[type="text"] + input[type="submit"] {
+  width: 100%;
+  margin-top: 9px;
+  padding: 9px;
+  border: none;
+  border-radius: 3px;
+  background-color: #003b73;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sidebar-box input[type="text"] + input[type="submit"]:hover {
+  background-color: #00549e;
+}
+
+/* =========================
+   スマホ
+========================= */
+
+@media (max-width: 768px) {
+
+  .header-inner {
+    width: 95%;
+  }
+
+  .site-header {
+    padding: 16px 0;
+  }
+
+  .site-header h1 {
+    font-size: 24px;
+  }
+
+  .header-top {
+    align-items: flex-start;
+  }
+
+  .account-menu {
+    gap: 8px;
+  }
+
+  .category-menu ul {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .category-menu li {
+    white-space: nowrap;
+  }
+
+  .category-menu a {
+    padding: 12px 16px;
+  }
+
+  .search-box {
+    width: 95%;
+    padding: 14px;
+  }
+
+  .search-form {
+    width: 100% !important;
+  }
+
+  .search-form input[type="text"] {
+    width: calc(100% - 95px) !important;
+  }
+
+  .search-form input[type="submit"] {
+    width: 95px !important;
+    min-width: 95px !important;
+    max-width: 95px !important;
+  }
+
+  .content-wrapper {
+    width: 95%;
+    display: block;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .tweet-main {
+    gap: 12px;
+  }
+
+  .tweet-image-box {
+    width: 135px;
+    height: 90px;
+  }
+
+  .tweet-title {
+    font-size: 15px;
+  }
+
+  .tweet-about {
+    font-size: 12px;
+  }
+
+  .tweet-actions {
+    display: none;
+  }
 }

@@ -1,66 +1,316 @@
 <%= stylesheet_link_tag 'index', media: 'all' %>
 
-<h1>RuleVerse</h1>
-<h3>一覧ページ</h3>
+<div class="site-wrapper">
 
-<h3>投稿を検索</h3>
- <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
-   <%= text_field_tag :search %>
-   <%= submit_tag '検索する'  %>
-<% end %>
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <div class="header-inner">
 
-<%= link_to "新規投稿へ", new_tweet_path %>
-<div class="tweets-container">
+      <div class="header-top">
 
-  <h3>投稿一覧</h3>
-
-  <% @tweets.each do |t| %>
-
-    <div class="tweet">
-
-      <div class="main-box">
-
-        <div class="left-container">
-
-          <% if t.image.attached? %>
-            <%= image_tag t.image, size: '250x200' %>
-          <% end %>
-
-          <p><%= t.user.email %></p>
-          <p><%= t.genre %></p>
-          <p><%= t.gamedate %></p>
-          <p><%= t.about %></p>
-
+        <div>
+          <h1>RuleVerse</h1>
+          <p>スポーツをもっと身近に</p>
         </div>
 
-        <div class="right-container">
+        <div class="account-menu">
+          <% if user_signed_in? %>
 
-          <%= link_to "詳細", tweet_path(t.id) %>
-          <%= link_to "編集", edit_tweet_path(t.id) %>
-          <%= button_to "削除", tweet_path(t.id), method: :delete %>
+            <%= button_to "ログアウト",
+                destroy_user_session_path,
+                method: :delete %>
 
+          <% else %>
+
+            <%= link_to "新規登録",
+                new_user_registration_path %>
+
+            <%= link_to "ログイン",
+                new_user_session_path %>
+
+          <% end %>
         </div>
 
       </div>
 
-      <p class="time"><%= t.created_at %></p>
-
     </div>
+  </header>
 
-  <% end %>
 
-</div>
+  <!-- メニュー -->
+  <nav class="category-menu">
 
-  <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
-    <% Tag.all.each do |t| %>
-        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+    <ul>
+
+      <li>
+        <%= link_to "ホーム", tweets_path %>
+      </li>
+
+      <li>
+        <%= link_to "野球",
+            tweets_path(genre: "野球") %>
+      </li>
+
+      <li>
+        <%= link_to "サッカー",
+            tweets_path(genre: "サッカー") %>
+      </li>
+
+      <li>
+        <%= link_to "バスケットボール",
+            tweets_path(genre: "バスケットボール") %>
+      </li>
+
+      <li>
+        <%= link_to "その他",
+            tweets_path(genre: "その他") %>
+      </li>
+
+      <li>
+        <%= link_to "新規投稿",
+            new_tweet_path %>
+      </li>
+
+    </ul>
+
+  </nav>
+
+
+  <!-- 投稿検索 -->
+  <section class="search-box">
+
+    <h3>投稿を検索</h3>
+
+    <%= form_tag(
+          { controller: "tweets", action: "index" },
+          method: :get
+        ) do %>
+
+      <div class="search-form">
+
+        <%= text_field_tag :search,
+            nil,
+            placeholder: "キーワードを入力" %>
+
+        <%= submit_tag "検索する" %>
+
+      </div>
+
     <% end %>
-    <%= submit_tag '検索' %>
-  <% end %>
+
+  </section>
 
 
-  <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
-    <%= text_field_tag :tag %>
-    <%= submit_tag 'タグを追加' %>
-  <% end %>
+  <!-- メイン＋サイドバー -->
+  <div class="content-wrapper">
+
+
+    <!-- メインコンテンツ -->
+    <main class="main-content">
+
+
+      <!-- ページタイトル -->
+      <div class="page-title">
+
+        <h2>
+
+          <% if params[:genre].present? %>
+
+            <%= params[:genre] %>
+
+          <% else %>
+
+            最新の投稿
+
+          <% end %>
+
+        </h2>
+
+      </div>
+
+
+      <!-- 投稿一覧 -->
+      <div class="tweets-container">
+
+        <% @tweets.each do |t| %>
+
+          <article class="tweet">
+
+            <div class="tweet-main">
+
+
+              <!-- 投稿画像 -->
+              <% if t.image.attached? %>
+
+                <div class="tweet-image-box">
+
+                  <%= image_tag t.image,
+                      class: "tweet-image" %>
+
+                </div>
+
+              <% end %>
+
+
+              <!-- 投稿内容 -->
+              <div class="tweet-content">
+
+
+                <!-- ジャンル -->
+                <div class="tweet-genre">
+                  <%= t.genre %>
+                </div>
+
+
+                <!-- タイトル -->
+                <h3 class="tweet-title">
+                  <%= t.title %>
+                </h3>
+
+
+                <!-- 詳細 -->
+                <p class="tweet-about">
+                  <%= t.about %>
+                </p>
+
+
+                <!-- 開催日 -->
+                <p class="tweet-date">
+
+                  開催日：
+                  <%= t.gamedate %>
+
+                </p>
+
+
+                <!-- 投稿者 -->
+                <p class="tweet-user">
+
+                  投稿者：
+                  <%= t.user.email %>
+
+                </p>
+
+              </div>
+
+
+              <!-- 操作ボタン -->
+              <div class="tweet-actions">
+
+                <%= link_to "詳細",
+                    tweet_path(t.id),
+                    class: "detail-button" %>
+
+                <%= link_to "編集",
+                    edit_tweet_path(t.id),
+                    class: "edit-button" %>
+
+                <%= button_to "削除",
+                    tweet_path(t.id),
+                    method: :delete,
+                    class: "delete-button" %>
+
+              </div>
+
+            </div>
+
+
+            <!-- 投稿日時 -->
+            <p class="time">
+
+              <%= t.created_at.strftime("%Y/%m/%d %H:%M") %>
+
+            </p>
+
+          </article>
+
+        <% end %>
+
+      </div>
+
+    </main>
+
+
+    <!-- サイドバー -->
+    <aside class="sidebar">
+
+
+      <!-- タグ検索 -->
+      <section class="sidebar-box">
+
+        <h3>タグから探す</h3>
+
+
+        <%= form_tag(
+              { controller: "tweets", action: "index" },
+              method: :get
+            ) do %>
+
+          <ul class="tag-list">
+
+            <% Tag.all.each do |t| %>
+
+              <li>
+
+                <%= check_box :tag_ids, t.name %>
+
+                <%= t.name %>
+
+              </li>
+
+            <% end %>
+
+          </ul>
+
+
+          <%= submit_tag "タグで検索" %>
+
+        <% end %>
+
+
+        <!-- タグ削除 -->
+        <div class="tag-delete-list">
+
+          <% Tag.all.each do |t| %>
+
+            <%= button_to "「#{t.name}」を削除",
+                tag_path(t.id),
+                method: :delete,
+                data: {
+                  turbo_confirm: "「#{t.name}」を削除しますか？"
+                } %>
+
+          <% end %>
+
+        </div>
+
+      </section>
+
+
+      <!-- タグ追加 -->
+      <section class="sidebar-box">
+
+        <h3>タグを追加</h3>
+
+
+        <%= form_tag(
+              { controller: "tweets", action: "index" },
+              method: :get
+            ) do %>
+
+          <%= text_field_tag :tag,
+              nil,
+              placeholder: "新しいタグ" %>
+
+          <%= submit_tag "タグを追加" %>
+
+        <% end %>
+
+      </section>
+
+
+    </aside>
+
+  </div>
+
 </div>

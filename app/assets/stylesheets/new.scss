@@ -1,23 +1,223 @@
+/* =========================
+   全体
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #f2f3f5;
+  color: #333;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+
+/* =========================
+   投稿フォーム
+========================= */
+
 .post-container {
-  margin: 50px auto;
-  width: 50%;
-  border: solid #d3def1;
-  border-radius: 10px;
-  text-align: center;
-  background-color: #d3def1;
+  width: 94%;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0 0 25px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
 }
-.title {
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 50px;
+
+
+/* =========================
+   タイトル
+========================= */
+
+.post-container .title {
+  margin: 0 0 25px;
+  padding: 16px 20px;
+  background-color: #003b73;
+  color: white;
+  border-bottom: 3px solid #002c55;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: left;
 }
-input[type="text"] {
-  width: 95%;
+
+
+/* =========================
+   入力項目
+========================= */
+
+.post-container .field {
+  margin: 0 30px 20px;
+  text-align: left;
+}
+
+.post-container .field label {
+  display: block;
+  margin-bottom: 7px;
+  color: #003b73;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   テキスト入力
+========================= */
+
+.post-container input[type="text"] {
+  width: 100%;
   height: 40px;
+  padding: 7px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
 }
-input[type="submit"] {
+
+
+/* =========================
+   日付
+========================= */
+
+.post-container input[type="date"] {
+  height: 40px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+
+/* =========================
+   詳細
+========================= */
+
+.post-container textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+
+/* =========================
+   画像
+========================= */
+
+.post-container input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #f8f8f8;
+}
+
+
+/* =========================
+   タグ
+========================= */
+
+.post-container .form-group {
+  margin: 25px 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  text-align: left;
+}
+
+.post-container .form-check {
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.post-container .form-check-label {
+  color: #333 !important;
+  font-weight: 400 !important;
+}
+
+.post-container input[type="checkbox"] {
+  margin-right: 6px;
+}
+
+
+/* =========================
+   投稿ボタン
+========================= */
+
+.post-container input[type="submit"] {
+  display: block;
   width: 200px;
-  font-size: 20px;
-  margin-top: 50px;
-  margin-bottom: 30px;
+  height: 42px;
+  margin: 30px auto 20px;
+  border: none;
+  border-radius: 3px;
+  background-color: #003b73;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.post-container input[type="submit"]:hover {
+  background-color: #00549e;
+}
+
+
+/* =========================
+   一覧に戻る
+========================= */
+
+.post-container > a {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 9px 16px;
+  background-color: #003b73;
+  color: white;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.post-container > a:hover {
+  background-color: #00549e;
+}
+
+
+/* =========================
+   スマホ
+========================= */
+
+@media (max-width: 768px) {
+
+  .post-container {
+    width: 95%;
+    margin: 20px auto;
+  }
+
+  .post-container .title {
+    font-size: 21px;
+  }
+
+  .post-container .field {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .post-container .form-group {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .post-container input[type="submit"] {
+    width: 180px;
+  }
+
 }

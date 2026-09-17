@@ -1,13 +1,54 @@
-<h1>RuleVerse</h1>
-<h3>Tweet詳細</h3>
-<div class="tweet">
-  <p><%= @tweet.about %></p>
-  <p><%= @tweet.created_at %></p>
+<%= stylesheet_link_tag 'show', media: 'all' %>
+
+<div class="post-container">
+
+  <h1 class="site-logo">RuleVerse</h1>
+
+  <h3>投稿詳細</h3>
+
+  <div class="tweet">
+
+    <h2><%= @tweet.title %></h2>
+
+    <p>
+      <strong>スポーツ：</strong>
+      <%= @tweet.genre %>
+    </p>
+
+    <p>
+      <strong>試合日：</strong>
+      <%= @tweet.gamedate %>
+    </p>
+
+    <p>
+      <strong>詳細：</strong>
+      <%= @tweet.about %>
+    </p>
+
+    <% if @tweet.image.attached? %>
+      <div class="tweet-image">
+        <%= image_tag @tweet.image %>
+      </div>
+    <% end %>
+
+    <p>
+      <strong>投稿日：</strong>
+      <%= @tweet.created_at.strftime("%Y/%m/%d %H:%M") %>
+    </p>
+
+    <div class="tweet-tags">
+      <strong>タグ：</strong>
+
+      <% @tweet.tags.each do |tag| %>
+        <span><%= tag.name %></span>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="action-links">
+    <%= link_to "Tweet一覧に戻る", tweets_path %>
+    <%= link_to "編集する", edit_tweet_path(@tweet.id) %>
+  </div>
+
 </div>
-
-<%= link_to "Tweet一覧に戻る", tweets_path %>
-<%= link_to "編集する", edit_tweet_path(@tweet.id) %>
-
-<% @tweet.tags.each do |tag| %>
-    <span><%= tag.name %></span>
-<% end %>
