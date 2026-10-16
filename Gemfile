@@ -72,4 +72,4 @@ group :production do
   gem 'pg'
 end
 
-gem "json", "~> 2.7"
+gem "json", "~> 3.1"
